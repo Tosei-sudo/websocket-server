@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STE</title>
+</head>
+
+<body>
+    TEST
+</body>
+<script>
+    const sock = new WebSocket("ws://127.0.0.1:5006/websocket");
+
+    sock.addEventListener("open", e => {
+        console.log("接続が開かれたときに呼び出されるイベント");
+        sock.send("{\"t\" : \"tt\"}")
+    });
+
+    sock.addEventListener("message", e => {
+        console.log(e.data);
+    });
+
+    sock.addEventListener("close", e => {
+        console.log("接続が閉じられたときに呼び出されるイベント");
+    });
+
+    sock.addEventListener("error", e => {
+        console.log("エラーが発生したときに呼び出されるイベント");
+    });
+</script>
+
+</html>
